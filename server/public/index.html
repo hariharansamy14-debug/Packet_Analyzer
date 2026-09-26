@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Packet Lens</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Packet Lens home">
+        <span class="brand-mark">PL</span>
+        <span>Packet Lens</span>
+      </a>
+      <span class="status"><i></i> parser online</span>
+    </header>
+
+    <section class="intro">
+      <p class="eyebrow">Network inspection workspace</p>
+      <h1>See what your packet is saying.</h1>
+      <p class="lede">Paste a raw Ethernet frame and get a readable breakdown of its network layers.</p>
+    </section>
+
+    <section class="workspace">
+      <form class="input-panel" id="packet-form">
+        <div class="panel-heading">
+          <div>
+            <p class="section-label">01 / INPUT</p>
+            <h2>Raw packet</h2>
+          </div>
+          <button class="text-button" type="button" id="sample-button">Load sample</button>
+        </div>
+        <label for="hex-input">Hexadecimal bytes</label>
+        <textarea id="hex-input" spellcheck="false" placeholder="aa bb cc dd ee ff 11 22 33 44 55 66 08 00 ..."></textarea>
+        <div class="form-footer">
+          <span id="byte-count">0 bytes</span>
+          <button class="primary-button" type="submit">Analyze packet <span aria-hidden="true">&#8594;</span></button>
+        </div>
+        <p class="hint">Whitespace is ignored. Ethernet frames need at least 14 bytes.</p>
+      </form>
+
+      <section class="results-panel" aria-live="polite">
+        <div class="panel-heading">
+          <div>
+            <p class="section-label">02 / OUTPUT</p>
+            <h2>Decoded layers</h2>
+          </div>
+          <span class="packet-size" id="packet-size">Waiting</span>
+        </div>
+        <div id="results" class="empty-state">
+          <span class="empty-icon">+</span>
+          <p>Your decoded packet will appear here.</p>
+        </div>
+      </section>
+    </section>
+
+    <p class="error" id="error" role="alert" hidden></p>
+    <footer>Built for quick packet inspection <span>&middot;</span> Ethernet / IPv4 / TCP / UDP / ICMP</footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
